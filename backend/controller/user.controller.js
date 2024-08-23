@@ -2,6 +2,7 @@ const express = require("express");
 const zod = require("zod");
 const jwt = require("jsonwebtoken");
 const { User } = require("../model/userSchema");
+const { Account } = require("../model/accountSchema");
 const router = express.Router();
 
 const signupBody = zod.object({
@@ -38,6 +39,11 @@ router.post("/signup", async (req, res) => {
   });
 
   const userId = user._id;
+  await Account.create({
+    userId,
+    balance: 1+ Math.random()*10000
+  })
+
   const token = jwt.sign({ userId }, process.env.JWT_SECRET);
   res.status(201).json({
     message: "New User is successfully created",
@@ -87,7 +93,7 @@ const updateBody = zod.object({
   firstName: zod.string().optional(),
   lastName: zod.string().optional(),
   password: zod.string().optional(),
-});
+}); 
 
 router.put("/", async (req, res) => {
   const { success } = updateBody.safeParse(req.body);
