@@ -10,7 +10,7 @@ const Signup = () => {
   <div className="flex flex-col justify-center">
     <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
       <Heading label={"Sign up"} />
-      <SubHeading label={"Enter your infromation to create an account"} />
+      <SubHeading label={"Enter your information to create an account"} />
       <InputBox placeholder="Anish" label={"First Name"} />
       <InputBox placeholder="Choudhary" label={"Last Name"} />
       <InputBox placeholder="anishb2041@gmail.com" label={"Email"} />
@@ -23,5 +23,4 @@ const Signup = () => {
   </div>
 </div>
 }
-
 export default Signup
