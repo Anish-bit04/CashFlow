@@ -14,7 +14,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const SignupBtn = async () => {
+  const SignupBtn = async ({setisAuthenticated}) => {
     const response = await axios.post(
       "http://localhost:4000/api/v1/user/signup",
       {
@@ -25,6 +25,7 @@ const Signup = () => {
       }
     );
     localStorage.setItem("token", response.data.token);
+    setisAuthenticated(true)
     navigate("/dashboard");
   };
   return (

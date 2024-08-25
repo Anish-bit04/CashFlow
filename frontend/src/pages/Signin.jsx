@@ -7,7 +7,7 @@ import SubHeading from "../components/SubHeading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Signin = () => {
+const Signin = ({setisAuthenticated}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,6 +19,7 @@ const Signin = () => {
       password,
     });
     localStorage.setItem("token", response.data.token);
+    setisAuthenticated(true)
     navigate('/dashboard')
   };
 
