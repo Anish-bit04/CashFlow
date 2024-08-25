@@ -9,8 +9,11 @@ Currently, two official plugins are available:
 
 
 # Things needed to add 
-- need to add debouncing and filter using lowercase in filter
-- optimize the code
-- add loader to Send Money and success alert or something 
+- need to add debouncing and filter using lowercase in filter ✅
+- optimize the code -> implemented Lazy loading ✅
+- add loader to Send Money and success alert or something ✅
 - close the routes so only logged in user can access the routes
 - make signin page functionable
+- remove yourself from the list of users in UsesList ✅
+- use some auth to get user data
+- hash the password before sending to the database

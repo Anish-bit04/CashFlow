@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Button from "./Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -6,11 +6,20 @@ import { useNavigate } from "react-router-dom";
 export const Users = () => {
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState([]);
-  // need to add debouncing and filter using lowercase
+
   useEffect(() => {
-    axios
-      .get("http://localhost:4000/api/v1/user/bulk?filter=" + filter)
-      .then((res) => setUsers(res.data.user));
+    const value = setInterval(() => {
+      if (filter) {
+        axios
+          .get("http://localhost:4000/api/v1/user/bulk?filter=" + filter)
+          .then((res) => setUsers(res.data.user))
+          .catch((err) => console.error(err));
+      }
+    }, 300);
+    // clear interval
+    return () => {
+      clearInterval(value);
+    };
   }, [filter]);
 
   return (
@@ -33,8 +42,8 @@ export const Users = () => {
   );
 };
 
-function User({ user }) {
-    const navigate = useNavigate()
+const User = ({ user }) => {
+  const navigate = useNavigate();
   return (
     <div className="flex justify-between">
       <div className="flex">
@@ -51,8 +60,14 @@ function User({ user }) {
       </div>
 
       <div className="flex flex-col justify-center h-ful">
-        <Button onClick={(e)=>navigate('/send?id='+user._id + '&name='+user.firstName)} label={"Send Money"} />
+        <Button
+          onClick={useCallback(
+            (e) => navigate("/send?id=" + user._id + "&name=" + user.firstName),
+            [navigate]
+          )}
+          label={"Send Money"}
+        />
       </div>
     </div>
   );
-}
+};

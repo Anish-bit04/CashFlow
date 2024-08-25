@@ -3,6 +3,7 @@ const zod = require("zod");
 const jwt = require("jsonwebtoken");
 const { User } = require("../model/userSchema");
 const { Account } = require("../model/accountSchema");
+const { authmiddleware } = require("../middleware/authmiddleware");
 const router = express.Router();
 
 const signupBody = zod.object({
@@ -69,7 +70,6 @@ router.post("/signin", async (req, res) => {
 
   const user = await User.findOne({
     username: req.body.username,
-    password: req.body.password,
   });
 
   if (!user) {
@@ -119,15 +119,16 @@ router.get("/bulk", async (req, res) => {
     $or: [
       {
         firstName: {
-          $regex: filter,
+          $regex: filter,$options: "i" 
         },
       },
       {
         lastName: {
-          $regex: filter,
+          $regex: filter,$options: "i" 
         },
       },
     ],
+    _id: { $ne: req.userId }
   });
 
   res.json({
