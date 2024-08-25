@@ -47,7 +47,7 @@ router.post("/signup", async (req, res) => {
     balance: 1+ Math.random()*10000
   })
 
-  const token = jwt.sign({ userId }, process.env.JWT_SECRET);
+  const token = jwt.sign({ userId }, process.env.JWT_SECRET,{expiresIn:'2d'});
   res.status(201).json({
     message: "New User is successfully created",
     token: token,
@@ -86,7 +86,7 @@ router.post("/signin", async (req, res) => {
     });
   }
   const userId = user._id;
-  const token = jwt.sign({ userId }, process.env.JWT_SECRET);
+  const token = jwt.sign({ userId }, process.env.JWT_SECRET,{expiresIn:'2d'});
 
   res.status(200).json({
     message: "LoggedIn succesfully",
