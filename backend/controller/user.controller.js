@@ -3,7 +3,8 @@ const zod = require("zod");
 const jwt = require("jsonwebtoken");
 const { User } = require("../model/userSchema");
 const { Account } = require("../model/accountSchema");
-const { authmiddleware } = require("../middleware/authmiddleware");
+const { genSalt } = require("bcrypt");
+const bcrypt = require("bcrypt");
 const router = express.Router();
 
 const signupBody = zod.object({
@@ -31,12 +32,13 @@ router.post("/signup", async (req, res) => {
       message: "User already exits",
     });
   }
-
+  const salt = await genSalt(10)
+  const hash = await bcrypt.hash(req.body.password,salt) 
   const user = await User.create({
     username: req.body.username,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    password: req.body.password,
+    password: hash,
   });
 
   const userId = user._id;
@@ -77,7 +79,12 @@ router.post("/signin", async (req, res) => {
       message: "User is not signedUp",
     });
   }
-
+  const correctPass = await bcrypt.compare(req.body.password,user.password)
+  if(!correctPass){
+    return res.status(411).json({
+      message: "Incorrect username or password",
+    });
+  }
   const userId = user._id;
   const token = jwt.sign({ userId }, process.env.JWT_SECRET);
 
