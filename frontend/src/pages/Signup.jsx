@@ -16,7 +16,7 @@ const Signup = ({setisAuthenticated}) => {
 
   const SignupBtn = async () => {
     const response = await axios.post(
-      "http://localhost:4000/api/v1/user/signup",
+      "https://paytm-backend-aklo.onrender.com/api/v1/user/signup",
       {
         username,
         firstName,

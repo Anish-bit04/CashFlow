@@ -12,7 +12,7 @@ const SendMoney = () => {
   const navigate = useNavigate()
   const transferMoney = async () => {
     await axios.post(
-      "http://localhost:4000/api/v1/account/transfer",
+      "https://paytm-backend-aklo.onrender.com/api/v1/account/transfer",
       { to: id, amount: amount,},
       {
         headers: {

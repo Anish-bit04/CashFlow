@@ -5,7 +5,7 @@ export const Balance = () => {
   const [value, setvalue] = useState(0);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/v1/account/balance", {
+    axios.get("https://paytm-backend-aklo.onrender.com/api/v1/account/balance", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
