@@ -17,7 +17,7 @@ const App = () => {
     <>
       <BrowserRouter>
       <Routes>
-        <Route path='/signup' element={<Suspense fallback={'Loading...'}><Signup setisAuthenticated = {setisAuthenticated}/> </Suspense> }/>
+        <Route path={['/signup','/']} element={<Suspense fallback={'Loading...'}><Signup setisAuthenticated = {setisAuthenticated}/> </Suspense> }/>
         <Route path='/signin' element={<Suspense fallback={'Loading...'}><Signin setisAuthenticated = {setisAuthenticated}/></Suspense> }/>
         <Route path='/dashboard' element={ 
           <Suspense fallback={'Loading'}>

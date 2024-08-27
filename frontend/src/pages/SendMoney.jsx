@@ -12,7 +12,7 @@ const SendMoney = () => {
   const navigate = useNavigate()
   const transferMoney = async () => {
     await axios.post(
-      "http://localhost:4000/api/v1/account/transfer",
+      "https://cashflow-7r4p.onrender.com/api/v1/account/transfer",
       { to: id, amount: amount,},
       {
         headers: {
