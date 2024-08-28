@@ -7,14 +7,14 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
-const Signup = ({setisAuthenticated}) => {
+const Signup = () => {
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const SignupBtn = async () => {
+  const SignupBtn = async ({setisAuthenticated}) => {
     const response = await axios.post(
       "https://cashflow-backend-n95q.onrender.com/api/v1/user/signup",
       {

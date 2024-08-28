@@ -19,9 +19,9 @@ const SendMoney = () => {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
-      alert('Transfer Successfull')
       navigate('/dashboard')
   };
+
   return (
     <div className="flex justify-center h-screen bg-gray-100">
       <div className="h-full flex flex-col justify-center">
@@ -48,7 +48,6 @@ const SendMoney = () => {
                   onChange={(e) => {
                     setAmount(e.target.value);
                   }}
-                  value={amount}
                   type="number"
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                   id="amount"

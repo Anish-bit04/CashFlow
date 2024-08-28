@@ -17,9 +17,7 @@ Currently, two official plugins are available:
 - remove yourself from the list of users in UsesList ✅
 - use some auth to get user data 
 - hash the password before sending to the database ✅
-- made balance from backend to frontend  ✅
-- use react toast for successful transfer
-- create logout button
+- made balance from backend to frontend 
 
 # Example user Signin route 
 - username:test1@gmail.com 

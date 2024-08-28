@@ -15,6 +15,5 @@ export const Balance = () => {
     <div className="flex">
       <div className="font-bold text-lg">Your balance</div>
       <div className="font-semibold ml-4 text-lg">Rs {parseFloat(value.toFixed(2))}</div>
-    </div>
-  );
-};
+    </div>)
+}
