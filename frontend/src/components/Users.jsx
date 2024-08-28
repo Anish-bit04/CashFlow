@@ -11,7 +11,7 @@ export const Users = () => {
     const value = setInterval(() => {
       if (filter) {
         axios
-          .get("http://localhost:4000/api/v1/user/bulk?filter=" + filter)
+          .get("https://cashflow-backend-n95q.onrender.com/api/v1/user/bulk?filter=" + filter)
           .then((res) => setUsers(res.data.user))
           .catch((err) => console.error(err));
       }

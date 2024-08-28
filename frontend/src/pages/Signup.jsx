@@ -16,7 +16,7 @@ const Signup = ({setisAuthenticated}) => {
 
   const SignupBtn = async () => {
     const response = await axios.post(
-      "https://cashflow-7r4p.onrender.com/api/v1/user/signup",
+      "https://cashflow-backend-n95q.onrender.com/api/v1/user/signup",
       {
         username,
         firstName,
