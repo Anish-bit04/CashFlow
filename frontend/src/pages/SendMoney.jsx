@@ -12,7 +12,7 @@ const SendMoney = () => {
   const navigate = useNavigate()
   const transferMoney = async () => {
     await axios.post(
-      "https://cashflow-backend-n95q.onrender.com/api/v1/account/transfer",
+      "https://cashflow-backend-c0fr.onrender.com/api/v1/account/transfer",
       { to: id, amount: amount,},
       {
         headers: {

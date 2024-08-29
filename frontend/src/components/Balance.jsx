@@ -5,7 +5,7 @@ export const Balance = () => {
   const [value, setvalue] = useState(0);
 
   useEffect(() => {
-    axios.get("hhttps://cashflow-backend-n95q.onrender.com/api/v1/account/balance", {
+    axios.get("https://cashflow-backend-c0fr.onrender.com/api/v1/account/balance", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },

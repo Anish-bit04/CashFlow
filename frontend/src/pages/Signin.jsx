@@ -14,7 +14,7 @@ const Signin = ({setisAuthenticated}) => {
   const navigate = useNavigate()
 
   const handleClick = async () => {
-   const response= await axios.post("https://cashflow-backend-n95q.onrender.com/api/v1/user/signin", {
+   const response= await axios.post("https://cashflow-backend-c0fr.onrender.com/api/v1/user/signin", {
       username,
       password,
     });
@@ -30,13 +30,13 @@ const Signin = ({setisAuthenticated}) => {
           <Heading label={"Sign in"} />
           <SubHeading label={"Enter your credentials to access your account"} />
           <InputBox
-            placeholder="anishb2041@gmail.com"
+            placeholder="test1@gmail.com"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             label={"Email"}
           />
           <InputBox
-            placeholder="123456"
+            placeholder="12345678"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             label={"Password"}

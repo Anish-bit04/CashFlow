@@ -96,47 +96,55 @@ router.post("/signin", async (req, res) => {
 
 // update router
 
-const updateBody = zod.object({
-  firstName: zod.string().optional(),
-  lastName: zod.string().optional(),
-  password: zod.string().optional(),
-}); 
+// const updateBody = zod.object({
+//   firstName: zod.string().optional(),
+//   lastName: zod.string().optional(),
+//   password: zod.string().optional(),
+// }); 
 
-router.put("/", async (req, res) => {
-  const { success } = updateBody.safeParse(req.body);
+// router.put("/", async (req, res) => {
+//   const { success } = updateBody.safeParse(req.body);
 
-  if (!success) {
-    res.status(411).json({
-      message: "Error while updating information",
-    });
-  }
+//   if (!success) {
+//     res.status(411).json({
+//       message: "Error while updating information",
+//     });
+//   }
 
-  await User.updateOne({ _id: req.userId }, req.body);
-  res.json({
-    message: "Updated successfully",
-  });
-});
+//   await User.updateOne({ _id: req.userId }, req.body);
+//   res.json({
+//     message: "Updated successfully",
+//   });
+// });
 
 // Route to get users
 
 router.get("/bulk", async (req, res) => {
   const filter = req.query.filter || "";
 
-  const users = await User.find({
-    $or: [
-      {
-        firstName: {
-          $regex: filter,$options: "i" 
+  let query;
+
+  if (filter) {
+    query = {
+      $or: [
+        {
+          firstName: {
+            $regex: filter, $options: "i"
+          },
         },
-      },
-      {
-        lastName: {
-          $regex: filter,$options: "i" 
+        {
+          lastName: {
+            $regex: filter, $options: "i"
+          },
         },
-      },
-    ],
-    _id: { $ne: req.userId }
-  });
+      ],
+      _id: { $ne: req.userId }
+    };
+  } else {
+    query = { _id: { $ne: req.userId } };
+  }
+
+  const users = await User.find(query);
 
   res.json({
     user: users.map((user) => ({
@@ -147,5 +155,6 @@ router.get("/bulk", async (req, res) => {
     })),
   });
 });
+
 
 module.exports = router;
